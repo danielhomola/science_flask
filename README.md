@@ -9,7 +9,7 @@ with Python Flask, JavaScript and Bootstrap CSS.
 
 There are two main reasons for creating this template:
 
-1. Unfortunately that there's quite
+1. Unfortunately there's quite
 a lot of horribly looking and barely functioning scientific tools online.
 The reason behind this is simple: we are scientists and not
 web-developers. Keeping up with the latest trends, learning CSS, HTML
