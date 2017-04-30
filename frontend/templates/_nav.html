@@ -1,0 +1,36 @@
+{% set wide_views = ["vis"] %}
+{% if request.url_rule.endpoint in wide_views %}
+<nav class="navbar navbar-default" style="margin-top: 20px;">
+{% else %}
+<nav class="navbar navbar-default">
+{% endif %}
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" rel="home" href="{{ url_for('index') }}" >
+            <img style="max-width:150px; margin-top: -10px;" src="{{ url_for('static', filename='img/logo_medium.png') }}" alt="{{ config['APP_NAME'] }}" title="{{ config['APP_NAME'] }}"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" style="font-size:17px;">
+                {%- if current_user.is_authenticated -%}
+                    {% for href, id, caption in navigation_bar_logged_in %}
+                    <li {% if id == active_page %} class="active"{% endif%}>
+                    <a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+                    {% endfor %}
+                {%- else -%}
+                    {% for href, id, caption in navigation_bar_logged_out %}
+                    <li {% if id == active_page %} class="active"{% endif%}>
+                    <a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+                    {% endfor %}
+                {%- endif -%}
+            </ul>
+        </div>
+  </div>
+</nav>

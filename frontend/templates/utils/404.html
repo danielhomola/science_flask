@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% set active_page = "" %}
+
+{% block layout %}
+<div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="alert alert-danger" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>File Not Found</h1>
+                If you got here by using one of the links on the website, please report this error
+                by writing to us using the contact form.
+                <br><br>
+                <a href="{{ url_for('index') }}">Back</a>
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

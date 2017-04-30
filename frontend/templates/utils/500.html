@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% set active_page = "" %}
+
+{% block layout %}
+<div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="alert alert-danger" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>An unexpected error has occurred</h1>
+                The administrator has been notified. Sorry for the inconvenience!
+                <br><br>
+                <a href="{{ url_for('index') }}">Back</a>
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

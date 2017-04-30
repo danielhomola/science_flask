@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% set active_page = "profile" %}
+
+{% block layout %}
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="alert alert-info" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>Ooops..</h1>
+                {% if page == 'upload'%}
+                    We are sorry, but it looks like something went wrong during upload.<br><br>
+                    Please return to the <a href="{{ url_for('upload') }}"><strong>
+                    upload page</strong></a>, and try again.<br><br>
+                {% else %}
+                    We are sorry, but it looks like something went wrong in the analysis.<br><br>
+                    Please return to your <a href="{{ url_for('profile') }}"><strong>
+                    profile page</strong></a>, and try again.<br><br>
+                {% endif %}
+
+                If the problem persist, please write to us using the Contact menu.
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

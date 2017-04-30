@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% set active_page = "help" %}
+{% block body_class %}main main-index{% endblock %}
+
+{% block layout %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2" style="text-align: justify;">
+        
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What format the data files should follow?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <p>
+                        Data files must have numeric values. Any column that has a non-numeric value or values which
+                        cannot be coerced to float type will be discarded.
+                        Feature and sample IDs must all be unique, duplicates will be removed. Sample IDs should also match the sample IDs of the 2nd
+                        uploaded file's, because only the intersecting samples are used for covariance estimation. See an example data table below:
+                        </p>
+                        <br><br>
+                        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Feature ID 1</th>
+                                <th>Feature ID 2</th>
+                                <th>Feature ID 3</th>
+                                <th>Feature ID 4</th>
+                                <th>...</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Sample ID 1</td>
+                                <td>0.0032008</td>
+                                <td>0.0227951</td>
+                                <td>0.0167264</td>
+                                <td>0.0227934</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>Sample ID 2</td>
+                                <td>0.5020852</td>
+                                <td>0.0227953</td>
+                                <td>0.2117264</td>
+                                <td>0.1232279</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>Sample ID 3</td>
+                                <td>0.3811255</td>
+                                <td>0.4205265</td>
+                                <td>0.1020123</td>
+                                <td>0.1235234</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                        Only coma separeted (.csv) and tab-delimited (.txt) files are accepted for upload, and data
+                        files cannot exceed {{config['MAX_FILE_SIZE']}}. Furthermore, at the moment we cannot support
+                        data files with more than {{config['MAX_SAMPLES']}} samples, or more than
+                        {{config['MAX_FEATURES']}} features. Also, data files must have at least
+                        {{config['MINIMUM_FEATURES']}} features.<br><br>
+                        Finally, if you upload two data files, they must have at least {{config['INTERSECTING SAMPLES']}}
+                        intersecting samples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Another help/FAQ item?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <p>
+                        Text, more text, and even more text.
+                        <br><br>
+                        Text, more text, and even more text.
+                        <br><br>
+                        Text, more text, and even more text.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                            Another help/FAQ item?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        <p>
+                        Text, more text, and even more text.
+                        <br><br>
+                        Text, more text, and even more text.
+                        <br><br>
+                        Text, more text, and even more text.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

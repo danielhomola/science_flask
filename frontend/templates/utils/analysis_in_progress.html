@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% set active_page = "profile" %}
+
+{% block layout %}
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="alert alert-danger" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>Analysis in progress</h1>
+                Your previous analysis is still running and currently we cannot
+                support more than one analysis per user at any given time.<br><br>
+                Please wait till the previous finishes or delete it.
+                <br><br>
+                <a href="{{ url_for('profile') }}">Back</a>
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

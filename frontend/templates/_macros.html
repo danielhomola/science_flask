@@ -1,0 +1,138 @@
+{#---------------------------------------------------------------------------#}
+{# BOOTSTRAP HELPER FUNCTION #}
+{#---------------------------------------------------------------------------#}
+
+
+{% macro _hz_form_wrap(horizontal_columns, form_type, add_group=False, required=False) %}
+{% if form_type == "horizontal" %}
+  {% if add_group %}<div class="form-group{% if required %} required{% endif %}">{% endif %}
+  <div class="col-{{horizontal_columns[0]}}-offset-{{horizontal_columns[1]}}
+              col-{{horizontal_columns[0]}}-{{horizontal_columns[2]}}
+             ">
+{% endif %}
+{{caller()}}
+
+{% if form_type == "horizontal" %}
+  {% if add_group %}</div>{% endif %}
+  </div>
+{% endif %}
+{% endmacro %}
+
+
+{#---------------------------------------------------------------------------#}
+{# RENDER ERRORS SEPARATELY FOR LOGIN AND REGISTER VIEWS#}
+{#---------------------------------------------------------------------------#}
+
+
+{% macro fields_errors() %}
+{% for field in varargs %}
+{% if field.errors %}
+  {% for error in field.errors %}
+    {% call _hz_form_wrap(horizontal_columns, form_type) %}
+      <div class="alert alert-danger">{{error}}</div>
+    {% endcall %}
+  {% endfor %}
+{% endif %}
+{% endfor %}
+{% endmacro %}
+
+
+
+{#---------------------------------------------------------------------------#}
+{# RENDER FIELDS WITHOUT ERROR - BASIC EDITION#}
+{#---------------------------------------------------------------------------#}
+
+
+{% macro render_field(field) %}
+  <p>{{ field(**kwargs)|safe }}</p>
+{% endmacro %}
+
+
+{#---------------------------------------------------------------------------#}
+{# RENDER FIELDS WITHOUT ERROR  - BOOTSTRAP EDITION#}
+{#---------------------------------------------------------------------------#}
+
+
+{# Renders field for bootstrap 3 standards.
+
+    Params:
+        field - WTForm field
+        kwargs - pass any arguments you want in order to put them into the html attributes.
+        There are few exceptions: for - for_, class - class_, class__ - class_
+
+    Example usage:
+        {{ macros.render_field(form.email, placeholder='Input email', type='email') }}
+#}
+
+{% macro render_field_bootstrap(field, label_visible=false) -%}
+
+    <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
+        {% if (field.type != 'HiddenField' and field.type !='CSRFTokenField') and label_visible %}
+            <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+        {% endif %}
+        {{ field(class_='form-control', **kwargs) }}
+    </div>
+{%- endmacro %}
+
+
+{#---------------------------------------------------------------------------#}
+{# RENDER CHECKBOX #}
+{#---------------------------------------------------------------------------#}
+
+
+{# Renders checkbox fields since they are represented differently in bootstrap
+    Params:
+        field - WTForm field (there are no check, but you should put here only BooleanField.
+        kwargs - pass any arguments you want in order to put them into the html attributes.
+        There are few exceptions: for - for_, class - class_, class__ - class_
+
+    Example usage:
+        {{ macros.render_checkbox_field(form.remember_me) }}
+ #}
+{% macro render_checkbox_field(field) -%}
+    <div class="checkbox">
+        <label>
+            {{ field(type='checkbox', **kwargs) }} {{ field.label }}
+        </label>
+    </div>
+{%- endmacro %}
+
+{#---------------------------------------------------------------------------#}
+{# RENDER QUESTIONMARK WITH POPOVER TOOLTIP #}
+{#---------------------------------------------------------------------------#}
+
+{% macro render_question_mark(data) -%}
+    <a href="#" data-trigger="hover" data-html="true", data-toggle="popover" title="{{ data[0]|safe }}" data-content="{{ data[1]|safe }}"><span class="fa fa-question" aria-hidden="true"></span></a>
+{%- endmacro %}
+
+{#---------------------------------------------------------------------------#}
+{# RENDER FIELDS ERRORS FOR EACH FIELD #}
+{#---------------------------------------------------------------------------#}
+
+{% macro render_field_error(field, style='small_bottom') %}
+    <div class="alert alert-danger {{ style }}" role="alert" id="error_{{ field.id }}">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span id="error"></span>
+    </div>
+
+{% endmacro %}
+
+{#---------------------------------------------------------------------------#}
+{# RENDER FILES ICON WITH POPOVER TOOLTIP #}
+{#---------------------------------------------------------------------------#}
+
+{% macro render_files_and_params(data, icon, title) -%}
+    <a href="#" class="btn btn-default btn-block" data-trigger="hover"
+       data-html="true", data-toggle="popover"
+       title="<span style='padding-left:8px'><strong>{{ title }}</strong></span>"
+       data-content="
+        <table class='table table-striped' style='margin-bottom:0px; text-align:left;'>
+        {% for file in data %}
+            <tr>
+                <td><b>{{ file.field }}</b></td><td> {{ file.value }}</td>
+            </tr>
+        {% endfor %}</table>">
+        <i class="{{ icon }}" style="padding-left: .5em"></i>
+    </a>
+{%- endmacro %}

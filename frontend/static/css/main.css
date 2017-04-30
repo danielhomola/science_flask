@@ -1,0 +1,159 @@
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: rgba(245,245,245,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(247,247,247,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(247,247,247,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(247,247,247,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(247,247,247,1) 100%);
+}
+
+p{
+    font-size: 1.2em;
+    line-height: 175%;
+    text-align: justify;
+}
+
+li{
+    font-size: 1.3em;
+    line-height: 175%;
+    text-align: justify;
+}
+
+li li{
+    font-size: 100%;
+    line-height: 175%;
+}
+
+.tidy {
+    margin: 0;
+    padding: 0;
+}
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.glyphicon{
+    margin-right: 10px;
+}
+
+.fa.fa-question {
+    font-size: 17px;
+    margin-left: 10px;
+    color: #838588;
+}
+
+.fa {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.jumbotron{
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.navbar a {
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.navbar {
+    overflow: visible;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-family: 'Raleway', sans-serif !important;
+    font-weight: bold;
+}
+
+.logo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px dashed;
+
+}
+
+@media screen and (max-width: 950px) {
+    .openingImage {display:none;}
+
+}
+
+.footer {
+      margin: 50px 0;
+      padding: 10px;
+      border-top: 1px solid #EEE;
+      text-align: center;
+      color: #888;
+}
+
+.progress-trough {
+    border: 1px solid #000000;
+    height: 24px;
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar {
+    width: 50%;
+    height: 100%;
+    background-color: #0099FF;
+}
+
+.popover {
+    min-width: 400px;
+}
+
+.popover-content {
+    text-align: justify;
+}
+
+.profile-stats {
+    float: right;
+    margin-top: 16px;
+    padding-right: 13px;
+    font-size: .5em;
+    color: #848484;
+}
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:active{
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.navbar-fixed-top {
+    min-height: 80px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 80px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
+}

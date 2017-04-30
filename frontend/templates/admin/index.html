@@ -1,0 +1,18 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            {% if current_user.has_role('superuser') %}
+                <h2><span style="color: #1D70AB">Welcome to the admin panel</span></h2>
+                <p>Explore the tables of the database using the menu above.</p>
+            {% else %}
+                <h2><span style="color: #b42b26;">You don't have admin rights</span></h2>
+                <p>Please return to your <a href="{{ url_for('profile') }}">profile page</a>.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

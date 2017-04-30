@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% set active_page = "" %}
+
+{% set bootstro = {
+   "1": ("If you have uploaded two datasets then you can explore three correlation network:
+            <br><br>
+            <b>Dataset 1 with dataset2:</b> will show the network of Spearman
+            correlations between the features of the two datasets. The topology of
+            graph is determined using the Graph LASSO algorithm.
+            <br><b>Dataset 1:</b> will similarly show the network of correlations between the first
+            dataset's features.
+            <br><b>Dataset 2:</b> same as above for dataset 2.
+            <br><br>
+            You can load these into a new browser window by clicking on any of the
+            datasets of the dropdown menu."),
+   "2": ("Both the rows and columns of the heatmap below could be
+           ordered using these dropdown menus:
+           <br><br>
+           <b>Custers of dataset:</b> will order the heatmap according to the
+           hierarchical clusters of the given dataset's values.
+           <br><b>Clusters of rho values:</b> will similarly order the heatmap
+           according to the hierarchical clusters of rho values within the heatmap.
+           <br><b>Dataset feature names:</b> will simply order the features by their name.
+           <br><br>
+           These three options could be applied in any combination."),
+   "3": ("Legend for the network visualisations.
+           <br><br>
+           Any selection or focus event could be cancelled using this reset button. "),
+   "4": ("<b>Cells and colorbar:</b>
+           Rolling your mouse over any of the cells will show the exact rho and p values,
+           while on the left, a tick on the colour-bar will display how extreme the given rho
+           value is with respect to all other cells. Reds show positive correlations, while
+           blues are used for negative ones.
+           <br><b>Fold change:</b>If the feature selection was carried out on a
+           categorical binary variable, the median log 2 fold change will be displayed in the
+           tooltip for each feature next to their names as FC. This is calculated as
+           the log ratio of the feature's medians in the two cohort corresponding to the two
+           levels of the binary variable. The level which is alphabetically or numerically
+           ranked ahead is used as the numerator, while the other level of the binary variable
+           is the denominator.
+           <br><b>Row and column names:</b> Clicking on any of these will reorder the heatmap
+           by the given row's/column's rho values. It will also set the focus of the networks
+           to the clicked feature.
+           <br><b>Selection:</b> By clicking on any cell and dragging our mouse we can select
+           any region of the heatmap. Once we release the left mouse button, the networks get
+           filtered to only show the selected region of the heatmap. This allows us to explore
+           sub-networks of interest easily. We can still click row and column labels of the
+           selected region to focus the networks to a particular feature. Clicking on a row or
+           column label that is not in the selected region however will not lead to anything
+           useful.
+           <br><b>Multi-selection:</b> Once we have a rectangular selection we can add to it
+           another region by pressing down and holding our Shift key while we draw a new selection.
+           As before the networks get filtered to only show the selected correlations.
+           <br><b>Reset selection:</b> Any selection could be cancelled by clicking on any of the
+           heatmap's cells or pressing the Esc key. Alternatively the 'Reset selection' button
+           could also be used.
+          "),
+   "5": ("<br><b>Nodes:</b> If the visualised network is showing the correlations between
+            two datasets, it will be rendered as a bipartite graph. Consequently two
+            different colours are used to separate the features of the two datasets.
+            <br><b>Edges</b> have the same colour as their corresponding cell in the heatmap.
+            The width of each edge is also determined by the strength of the correlation.
+            <br><b>Zooming:</b> The network is zoomable using the mouse-wheel over it. Once
+            we zoom in, we can drag the network to move around.
+            <br><b>Focusing:</b> Any node could be clicked. This will focus the networks to
+            that particular feature and also highlight it's corresponding row or column label
+            in the heatmap. Clicking any node twice will reset the focus and give back the full
+            network."),
+   "6": ("This unusal looking network is an egoistic representation of the other network.
+           Once we focus on a single feature this will display it at its center with its
+           closest and second closest neighbours.
+           <br><br>
+           Just with the other network, any node could be clicked to focus on that particular
+           feature. The networks are synchronised to always focus on the same feature. If we
+           click on this network however, a legend will appear on the right, which we can use
+           to explore only this graph."),
+} -%}
+
+
+{% block layout %}
+
+<link href="{{ url_for('static', filename='css/bootstro.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/vis.css') }}" rel="stylesheet">
+
+<!-- ===================================================================== -->
+<!--  H E A D E R  -->
+<div class="row">
+    <div class="col-xs-12 bootstro title"
+        data-bootstro-title=" Tour of results explorer"
+        data-bootstro-content="Provide a nice tour of the features of your interface so user
+                               can understand it fully.
+                              <br><br>
+                              You can navigate this tour with the buttons below, or with the
+                              &rarr; &darr;, &larr; &uarr; keys
+                              <br><br>
+                              If you'd like to skip this tour now, and come back to it later, click
+                              the question mark in the top-right corner."
+        data-bootstro-step = "0"
+        data-bootstro-placement="bottom">
+        <h2 style="padding-left: 15px;">
+            <b>{{analysis_name}} </b> <span style="color: #bebebe">|</span>
+            {% if not autocorr %}
+                {% if data_file == "dataset1_2" %}
+                    {{ dataset_names[0] }} <span style="color: #9f9f9f">&</span> {{ dataset_names[1] }}
+                {% elif data_file == "dataset1" %}
+                    {{ dataset_names[0] }}
+                {% elif data_file == "dataset2" %}
+                    {{ dataset_names[1] }}
+                {% endif %}
+            {% else %}
+                {{ dataset_names[0] }}
+            {% endif %}
+            <a id="help" href="#" ><span class="fa fa-question" aria-hidden="true" style="float: right; padding-top: 0px; padding-right: 10px; font-size: 1em;"></span></a>
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <!-- ===================================================================== -->
+    <!--  LEFT COLUMN  -->
+    <div class="col-xs-12 col-sm-6 bootstro title"
+        data-bootstro-title=" Correlations"
+        data-bootstro-content="This is a heatmap of the correlations that were calculated b
+                               between the features with highest variance."
+        data-bootstro-step = "1"
+        data-bootstro-placement="right"
+        style="border-right:1px solid #eaeaea;">
+        <div class="page-header">
+            <h3 style="padding-left: 15px;">Correlations</h3>
+        </div>
+
+        <img src="{{ url_for('get_file', user_id=user_id, study_id=analysis_id, analysis=1, file=analysis_folder+'/output/r_'+data_file+'.png') }}"/>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!--  RIGHT CO -->
+    <!-- ===================================================================== -->
+
+    <div class="col-xs-12 col-sm-6 bootstro title"
+        data-bootstro-title=" P-values"
+        data-bootstro-content="This is a heatmap of the corrected p-values for the correlations."
+        data-bootstro-step = "2"
+        data-bootstro-placement="left">
+        <div class="page-header">
+            <h3 style="padding-left: 15px;">P-values</h3>
+        </div>
+        <img src="{{ url_for('get_file', user_id=user_id, study_id=analysis_id, analysis=1, file=analysis_folder+'/output/p_'+data_file+'.png') }}"/>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstro.js') }}"></script>
+<script type="text/javascript">
+
+    function help(){
+        bootstro.start('.bootstro', {
+            onComplete: function (params) {
+                alert("You have reached the end of the tour. Press 'Ok I got it' button or the Esc key to exit.");
+            }
+        })
+    };
+    $('#help').click(help);
+    $( document ).ready(help);
+</script>
+{% endblock %}

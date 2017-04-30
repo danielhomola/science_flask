@@ -1,0 +1,44 @@
+{% import '_macros.html' as mac %}
+
+{% extends 'base.html' %}
+{% set active_page = "login" %}
+{% block body_class %}main main-login{% endblock %}
+{% block layout %}
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="page-header">
+            <h2>Log In</h2>
+        </div>
+        <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+            {{ login_user_form.hidden_tag() }}
+            {{ mac.fields_errors(login_user_form.email, login_user_form.password) }}
+            {{ mac.render_field_bootstrap(login_user_form.email, placeholder='Email address', type='email') }}
+            {{ mac.render_field_bootstrap(login_user_form.password, placeholder='Password', type='password' ) }}
+            {{ mac.render_checkbox_field(login_user_form.remember) }}
+            {{ mac.render_field(login_user_form.next) }}
+            {{ mac.render_field_bootstrap(login_user_form.submit) }}
+        </form>
+    <div class="text-center">
+        <ul class="nav nav-pills " style="display: inline-block;">
+            <li><a href="{{ url_for_security('forgot_password') }}">Forgotten password?</a><br/></li>
+            <li><a href="{{ url_for_security('send_confirmation') }}">Resend confirmation email.</a></li>
+        </ul>
+    </div>
+
+    </div>
+
+    <div class="col-md-2 text-center">
+
+    </div>
+
+
+    <div class="col-md-5">
+        <div class="page-header">
+          <h2>New user?</h2>
+        </div>
+        <a href="{{ url_for_security('register') }}" class="btn btn-info btn-block"><h4><strong>REGISTER</strong></h4></a>
+    </div>
+</div>
+
+{% endblock %}

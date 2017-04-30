@@ -1,0 +1,109 @@
+{% from '_macros.html' import render_question_mark, render_field_error %}
+{% extends 'base.html' %}
+{% set active_page = "" %}
+{% set max_file_size = 'Maximum file size: 100 MB' %}
+{% set tooltips = {
+   "analysis_name": ("Name of the analysis","Please name your analysis, so when you hopefully return later to analyse another dataset,
+                    or this one with other parameters, you can view th results of either of your previous analyses.<br><br>
+                    It has to be at least 3 characters long and cannot be longer than 25 characters."),
+   "multi_corr": ("Correction for multiple testing","Since we have calculated several hundred correlations from our dataset, we need to account
+                  for multiple testing. Below you can choose the method to use and the adjusted p-value."),
+   "multi_corr_method": ("Method for correction","<b>Benjamini-Hochberg: </b>This is the classic method that started the False Discovery Rate
+                          method in life sciences. Since then, it has largely replaced the much harsher Bonferroni method. Let's say we
+                          perform a 1000 tests. Then rejecting the null hypothesis at &alpha;=0.05 would mean, that we would end up with 50
+                          false positives. The Bonferroni method would adjust &alpha; to 0.05/1000=0.00005 ensuring that our Familiy Wise Error
+                          Rate (FWER) is still 0.05. This leads to a lot of false negatives. FDR instead ensures that out of the tests
+                          we reject at &alpha;=0.05, only about 5% are actually false. <br><br>
+                         <b>Bonferroni: </b>See description above."),
+   "alpha_val": ("&alpha; or the multiple correction method","At what value should we reject correlations after the correction for multiple
+                testing was performed. This will be automatically divided by the number of tests for the Bonferroni.
+                correction"),
+   "feat_num": ("Number of top variance features to select","Determines how many features should be selected from each dataset for covariance analysis.
+                 It has to be between 2 and 10.")
+} -%}
+
+{% block layout %}
+{% if too_many_analyses == 1 %}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="alert alert-info" role="alert">
+            <h1>Exceeded the number of maximum analyses</h1>
+            We are sorry, but you exceeded the maximum number of analyses. <br><br>
+            Currently we can only store the output of {{ config['ACTIVE_ANALYSIS_PER_USER'] }}
+            analyses per user at any moment.<br><br>
+            Please delete one of your existing one to start a new analysis, but be aware that
+            you can only have {{ config['ANALYSIS_PER_USER'] }} analyses all together. <br><br>
+            Thank you for your understanding,<br>
+             {{ config['APP_NAME'] }} team
+        </div>
+    </div>
+</div>
+{% elif too_many_analyses == 2 %}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="alert alert-danger" role="alert">
+            <h1>Exceeded the total number of analyses</h1>
+            We are sorry, but currently we can only support {{ config['ANALYSIS_PER_USER'] }} analyses per user. <br><br>
+            If you would need to analyse more, please write us using the contact menu.
+            <br><br>
+            Thank you for your understanding,<br>
+             {{ config['APP_NAME'] }} team
+        </div>
+    </div>
+</div>
+{% else %}
+<form id="analysis-form" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="row ">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="page-header">
+                <h1>Analysis for {{ study_name }}</h1>
+            </div>
+            <!-- ------------------ NAME OF THE ANALYSIS ------------------ -->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ form.analysis_name.label }}
+                    {{ render_question_mark(tooltips["analysis_name"]) }}
+                </div>
+                <div class="panel-body">
+                    {{ form.analysis_name(class_="form-control", maxlength="25") }}
+                    {{ render_field_error(form.analysis_name) }}
+                </div>
+            </div>
+            <!-- ----------------- MULTIPLE CORRECTION -------------------- -->
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Correction for multiple testing</b>
+                    {{ render_question_mark(tooltips["multi_corr"]) }}
+                </div>
+                <div class="panel-body">
+                    {{ form.multi_corr_method.label}}{{ render_question_mark(tooltips["multi_corr_method"]) }}
+                    {{ form.multi_corr_method(class_="form-control") }}
+                    <br>
+                    {{ form.alpha_val.label}} {{ render_question_mark(tooltips["alpha_val"]) }}
+                    {{ form.alpha_val(class_="form-control", type="number", step="0.01") }}
+                    {{ render_field_error(form.alpha_val) }}
+                </div>
+            </div>
+            <!-- ------------------ DISCARD CORRELATIONS ------------------ -->
+            <div class="panel panel-default" id="annotation_panel">
+                <div class="panel-heading"><b>Top variance features</b>
+                </div>
+                <div class="panel-body">
+                    {{ form.feat_num.label}} {{ render_question_mark(tooltips["feat_num"]) }}
+                    {{ form.feat_num(class_="form-control", type="number", step="1") }}
+                    {{ render_field_error(form.feat_num) }}
+                </div>
+            </div>
+            <button type="button" id="analyse-button" class="btn btn-info btn-block"><h4><strong><span id="analyse-button-text">ANALYSE</span></strong></h4></button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var csrftoken = "{{ csrf_token() }}";
+    var ANALYSIS_URL  = "{{ url_for('analysis', user_id=user_id, study_id=study_id) }}";
+    var PROFILE_URL = "{{ url_for('profile') }}";
+    var ERROR_URL = "{{ url_for('something_wrong', page='analysis') }}";
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/analysis.js') }}"></script>
+{% endif %}
+{% endblock %}

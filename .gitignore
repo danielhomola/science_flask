@@ -1,0 +1,16 @@
+*.pyc
+.idea/
+*.db
+*.psd
+*txt
+*.ipynb
+frontend/config.py
+dump.rdb
+db_create.py
+migrations/
+userData/
+logs/
+dev/
+failedAnalyses/
+article/
+frontend/config.py

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% set active_page = "index" %}
+{% block body_class %}main main-index{% endblock %}
+
+{% block layout %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="jumbotron col-md-12 ">
+
+            <p>
+                <b>{{ config['APP_NAME'] }}</b> is a web-app template for online
+                scientific research tools, built with Python Flask, JavaScript and
+                Bootstrap CSS. It allows you to build a modern web-app from your
+                research tool in a matter of hours (as opposed to a few weeks).
+                <br><br>
+                It <b>comes with batteries included</b>:
+            </p>
+            <ul>
+                <li>admin panel</li>
+                <li>robust form validation</li>
+                <li>secure user management</li>
+                <li>uploading and checking of data files</li>
+                <li>asyncronous job submission and handling</li>
+                <li>email notifications of job status</li>
+                <li>detailed tutorial for deployment</li>
+                <li>nicely designed user-interface</li>
+                <li>logging to email and files</li>
+                <li>compatible with Python3</li>
+            </ul>
+            <p>
+                It's also <b>open-source and free</b>.
+            </p>
+
+        </div>
+
+        <div class="jumbotron col-md-12">
+            <p>This demo app <b>runs on AWS</b> on a t2.micro instance. Check the <a href="https://github.com/danielhomola/science_flask/blob/master/deployment.md">
+                <b>deployment.md</b></a> which explains the necessary steps to get your app to this stage.
+                For more info, documentation and source code please go to
+            </p>
+            <p>
+                <a class="btn btn-info btn-normal btn-block" href="https://github.com/danielhomola/science_flask">
+                    <i class="fa fa-github"  aria-hidden="true"></i>
+                Github repo</a>
+            </p>
+            <p>
+                Try the demo with these
+                <a class="btn btn-info btn-normal btn-block" href="{{ url_for('static', filename='test_data.zip') }}">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                Example datasets</a>
+
+            </p>
+            <p>
+                If you end up using Science Flask for your project please make sure to cite our work.
+            </p>
+            <p>
+                <a class="btn btn-info btn-normal btn-block" href="http://biorxiv.org/" target="_blank">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    <span class="introtext">Read the paper</span> </a>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+    <div class="jumbotron col-md-12">
+        <p>
+            To demonstrate the various features of Science Flask, <b>this demo</b>
+            implements a really simple scientific app which does the following:
+        </p>
+
+        <ul >
+            <li>
+             Users can <b>register</b> with an academic email address.
+            </li><li>
+             <b>Upload</b> one or two datasets as .csv or .txt files.
+            </li><li>
+             A series of <b>checks are performed</b> on the uploaded datasets:
+            <ul>
+                <li>
+                all columns have to be numerical
+                </li><li>
+                each dataset must have a feature and sample number that is between a
+                predefined minimum and maximum
+                </li><li>
+                if we have two datasets uploaded by the user, they need a minimum number
+                 of intersecting samples.
+                </li><li>
+                missing values are imputed with their column-wise median
+                </li>
+            </ul>
+            </li><li>
+             Then the user can <b>submit an analysis</b> using the uploaded files.
+             During the analysis the app will select a user defined number
+             of columns with the highest variance.
+            </li><li>
+             These columns/features are then used to calculate a correlation matrix between them.
+            </li><li>
+             If there's only one dataset uploaded, the <b>correlations are calculated</b>
+             between the features of this one dataset. If two datasets are uploaded then
+             three matrices/plots are produced: two for the features of the individual
+             datasets and another that shows the correlation between the features of the
+             two disperate datasets.
+            </li><li>
+             The resulting p-values of the correlation matrix are filtered using one of
+             the user selected corrrection for multiple testing methods: Bonferroni or
+             Benjamini Hochberg. The user can also specify the the alpha-level for
+             hypothesis testing. Only correlations that pass both of these will be displayed.
+            </li><li>
+             The tables and heatmap of correlations can be <b>downloaded</b> by the user <b>or
+             checked online</b>.
+            </li>
+        </ul>
+    </div>
+    </div>
+
+</div>
+
+{% endblock %}

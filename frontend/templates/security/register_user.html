@@ -1,0 +1,45 @@
+{% import '_macros.html' as mac %}
+{% extends 'base.html' %}
+{% set active_page = "login" %}
+{% block body_class %}main main-login{% endblock %}
+{% block layout %}
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="page-header">
+          <h2>Register</h2>
+        </div>
+        <form action="{{ url_for_security('register') }}" method="POST" name="register_user_form">
+            {{ register_user_form.hidden_tag() }}
+            {{ mac.fields_errors(register_user_form.email, register_user_form.password, register_user_form.first_name, register_user_form.last_name) }}
+            {{ mac.render_field_bootstrap(register_user_form.email, placeholder='Email address', type='email') }}
+            {{ mac.render_field_bootstrap(register_user_form.first_name, placeholder='First name', type='text') }}
+            {{ mac.render_field_bootstrap(register_user_form.last_name, placeholder='Last name', type='text') }}
+            {{ mac.render_field_bootstrap(register_user_form.password, placeholder='Password', type='password' ) }}
+            {% if register_user_form.password_confirm %}
+                {{ mac.render_field_bootstrap(register_user_form.password_confirm, placeholder='Confirm password', type='password' ) }}
+            {% endif %}
+            {{ mac.render_field_bootstrap(register_user_form.submit) }}
+        </form>
+    </div>
+
+
+    <div class="col-md-2 text-center">
+        <br><br>
+    </div>
+
+
+    <div class="col-md-5" style="text-align: justify;">
+        <div class="page-header">
+          <h2>For academic use only</h2>
+        </div>
+        {{ config['APP_NAME'] }} is free to use for academic research. You will need a valid email address from an
+        academic institution that is on <a href="https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json">
+        this list</a>. Once you confirm your email address, you can upload your studies straight away.
+        <br><br>If you wish to use {{ config['APP_NAME'] }} for non-academic projects, please
+        <a href="mailto:scienceflask@sgmail.com?Subject=Non-academic%20enquiry">contact us</a>.
+
+    </div>
+</div>
+
+{% endblock %}

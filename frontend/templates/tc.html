@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% set active_page = "" %}
+{% block body_class %}main main-index{% endblock %}
+
+{% block layout %}
+<div class="row">
+    <div class="col-xs-12" style="text-align: justify;">
+        <div class="page-header">
+            <h2>Termns and condition</h2>
+        </div>
+        <h4>Availability</h4>
+        {{ config['APP_NAME'] }} is free for academic use. For registration, a valid email address is required
+        from one of the 10000 registered academic institutions on
+        <a href="https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json">
+        this list</a>. <br><br>
+        If you wish to use {{ config['APP_NAME'] }} for non-academic projects please
+        <a href="mailto:science_flask@gmail.com?Subject=Non-academic%20enquiry">contact us</a>.
+        <hr>
+        <h4>Licence</h4>
+        {{ config['APP_NAME'] }} is released under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPL 3 licence </a>.
+        The source code could be found <a href="https://github.com/danielhomola/science_flask">here</a>.
+        If you would like contribute to the project, fork it, or make it your own, please take the time to read and
+        understand the licence. For general use, the two main points to consider from the licence are:
+        <br><br>
+        <b>15. Disclaimer of Warranty.</b><br>
+        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+        <br><br>
+        <b>16. Limitation of Liability.</b><br>
+        IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+        <hr>
+        <h4>Data handling</h4>
+        {{ config['APP_NAME'] }} is hosted on AWS servers. The uploaded data files and all derived
+        results are only accessible to the registered user who uploaded/analysed them and to the admins of the server.
+
+        {{ config['APP_NAME'] }} does not guarantee the future availability of any uploaded data or acquired results. Furthermore,
+        {{ config['APP_NAME'] }} reserve the right to terminate the hosting of this service at any time. Therefore, users are encouraged to
+        download their results and take screenshots of the relevant visualisations.
+    </div>
+
+</div>
+
+
+{% endblock %}

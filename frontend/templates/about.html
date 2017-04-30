@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% set active_page = "about" %}
+{% block body_class %}main main-index{% endblock %}
+
+{% block layout %}
+    <div class="row">
+        <div class="jumbotron col-md-8 col-md-offset-2" style="text-align: justify;">
+            <p>
+            {{ config['APP_NAME'] }} is a web-app template for online
+            scientific research tools built with Python Flask, JavaScript and Bootstrap CSS.
+            There are two main reasons for creating this template:
+            </p>
+            <ol>
+                <li>
+                Unfortunately there's quite
+                a lot of horribly looking and barely functioning scientific tools online.
+                The reason behind this is simple: we are scientists and not
+                web-developers. Keeping up with the latest trends, learning CSS, HTML
+                and modern web dev practices is simply not in our job description
+                and certainly not in our salary or grant money. This,
+                however leads to two things:
+                </li>
+                <ul>
+                    <li>
+                    Many amazing projects simply are not made available online, as the
+                    authors didn't have time/know-how/energy/funding for doing that.
+                    </li>
+                    <li>
+                    Many projects that do end up getting some form of online presence
+                    look hideous, hard to maintain, built on old web tech
+                    and are not very user-friendly.
+                    </li>
+                </ul>
+                <li>
+                While building <a href="https://www.medbio.imperial.ac.uk/corrmapper/">CorrMapper</a>
+                I realised that there's an incredible amount of overhead involved with
+                creating a fully functioning website, with user management, file uploads,
+                form validation, etc. You can learn Flask in about a weekend to a level
+                that you can understand code examples and start hacking away. But it
+                takes a <b>long</b> time to actually get a working website with all the
+                features listed above.
+                </li>
+            </ol>
+        </div>
+        <div class="jumbotron col-md-8 col-md-offset-2" style="text-align: justify;">
+            <p>
+
+            Hopefully, by open-sourcing Science Flask, the activation energy for
+            turning an offline science project or research tool into a functioning
+            web-app will be lowered significantly. Hopefully this will not only mean
+            there'll be more science tools published, but also they'll look and feel
+            nicer and will be easier to use.
+            <br><br>
+            It would be great to build a small community around Science Flask,
+            so contributors are very welcome! For more info, documentation and
+            source code please visit the
+            <a href="https://github.com/danielhomola/science_flask">
+                Github page of the project</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

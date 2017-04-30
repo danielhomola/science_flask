@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% set active_page = "upload" %}
+
+{% block layout %}
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="alert alert-danger" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>File is too large</h1>
+                We are sorry, but you exceeded the maximum uploadable file size. <br><br>
+                Please ensure that all your files are less than a  {{ config['MAX_FILE_SIZE'] }}. <br><br>
+                If you would need to analyse larger datasets, please write us using the contact menu.
+                <br><br>
+                <a href="{{ url_for('upload') }}">Back</a>
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

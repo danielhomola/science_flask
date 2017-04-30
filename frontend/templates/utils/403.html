@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% set active_page = "" %}
+
+{% block layout %}
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="alert alert-danger" role="alert" style="text-align: justify">
+                <span class="sr-only">Error:</span>
+                <h1>Access denied</h1>
+                Sorry, but you don't have permission to do this.<br><br>
+                If you got here by using one of the links on the website, please report this error
+                by writing to us using the contact form.
+                <br><br>
+                <a href="{{ url_for('profile') }}">Back</a>
+                <br><br>
+                Thank you for your understanding,<br>
+                {{ config['APP_NAME'] }} team
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

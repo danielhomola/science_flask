@@ -1,0 +1,283 @@
+{% from '_macros.html' import render_files_and_params %}
+{% extends '/base.html' %}
+{% set active_page = "profile" %}
+{% block layout %}
+
+<link href="{{ url_for('static', filename='css/bootstro.css') }}" rel="stylesheet">
+
+<div class="row">
+    <div class="col-lg-9 bootstro"
+                data-bootstro-title="Tour of profile page"
+                data-bootstro-content="Congrats on uploading your first study!
+                                      Please take a minute to complete this tour and learn about what {{ config['APP_NAME'] }} can
+                                      help you with.<br><br>
+                                      You can navigate this tour with the buttons below, or with the
+                                      &rarr; &darr;, &larr; &uarr; keys
+                                      <br><br>
+                                      You can skip this tour now, and come back to it later, clicking the question mark
+                                      in the top-right corner in the Account section."
+                data-bootstro-step = "0"
+                data-bootstro-placement="bottom">
+
+        <!-- ------------------------ STUDIES  ---------------------------- -->
+
+        <h2 class="page-header">Studies
+            <span class="profile-stats bootstro"
+                data-bootstro-title="Number of total studies"
+                data-bootstro-content="{{ config['APP_NAME'] }} currently supports {{ config['STUDY_PER_USER'] }}
+                                       studies all together per each user. If you reach the limit of active studies
+                                       ({{ config['ACTIVE_STUDY_PER_USER'] }}), you can delete one
+                                       of your uploaded ones and upload a new one instead."
+                data-bootstro-step = "3"
+                data-bootstro-placement="bottom">
+                    Total: {{ stats['all_studies'] }} / {{ config['STUDY_PER_USER'] }}</span>
+            <span class="profile-stats  bootstro"
+                data-bootstro-title="Number of active studies"
+                data-bootstro-content="{{ config['APP_NAME'] }} currently supports {{ config['ACTIVE_STUDY_PER_USER'] }}
+                                       active studies at any given moment per user to optimise server load."
+                data-bootstro-step = "2"
+                data-bootstro-placement="bottom">
+                Active: {{stats['active_studies']}} / {{ config['ACTIVE_STUDY_PER_USER'] }}</span>
+            </h2>
+        {% if studies|length > 0 %}
+            <table class="table table-striped bootstro"
+                data-bootstro-title="Studies section"
+                data-bootstro-content="This section lists your uploaded studies.
+                                       <br><br><b>Files</b>: roll your mouse over this button to see the files you uploaded.
+                                       <br><b>Params</b>: roll your mouse over this button to see the parameters of your study.
+                                       <br><b>Analyse</b>: takes you to the analysis form.
+                                       <br><b>Delete</b>: deletes study with all connected analyses."
+                data-bootstro-step = "1"
+                data-bootstro-placement="bottom">
+            <thead >
+                <tr>
+                    <th class="col-md-8">Name</th>
+                    <th class="col-md-2 text-center">Files</th>
+                    <th class="col-md-2 text-center">Params</th>
+
+                    <th class="col-md-2 text-center">Analyse</th>
+                    <th class="col-md-2 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for study in studies %}
+                <tr>
+                    <!-- -------------------- NAME ------------------------ -->
+                    <td>{{ study.study_name }}</td>
+
+                    <!-- -------------------- FILES ------------------------ -->
+                    <td class="text-center">
+                        {{ render_files_and_params(study.files, "fa fa-file-text", "Files of study") }}
+                    </td>
+
+                    <!-- -------------------- PARAMS ----------------------- -->
+                    <td class="text-center">
+                        {{ render_files_and_params(study.params, "fa fa-gear", "Parameters of study") }}
+                    </td>
+
+                    <!-- -------------------- ANALYSE --------------------- -->
+                    <td>
+                        <a href="{{ url_for('analysis', user_id=current_user.id, study_id=study.id) }}" class="btn btn-success btn-block">
+                            <i class="fa fa-bar-chart" style="padding-left: .5em"></i>
+                        </a>
+                    </td>
+                    <!-- -------------------- DELETE ---------------------- -->
+                    <td>
+                        <form action="{{ url_for('delete_study', user_id=current_user.id, study_id=study.id) }}" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button type="submit" onclick="if (!confirm('Are you sure? All analyses of this study will be deleted as well.')) return false;" class="btn btn-danger btn-block">
+                                <i class="fa fa-trash" style="padding-left: .5em"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+        {% else %}
+        <div style="margin-top: 3em">
+            <h4>You haven't uploaded any datasets yet.</h4>
+            <a class="btn btn-info btn-lg" href="{{ url_for('upload') }}"><strong>UPLOAD</strong></a>
+        </div>
+        {% endif %}
+
+        <!-- ------------------------ ANALYSES  --------------------------- -->
+
+        <h2 class="page-header">Analyses
+            <span class="profile-stats bootstro"
+                data-bootstro-title="Number of total studies"
+                data-bootstro-content="{{ config['APP_NAME'] }} currently supports {{ config['ANALYSIS_PER_USER'] }}
+                                       submitted analyses all together per each user. If you reach the limit of
+                                       active studies ({{ config['ACTIVE_ANALYSIS_PER_USER'] }}), you can delete one
+                                       of your completed analyses and start a new one instead."
+                data-bootstro-step = "6"
+                data-bootstro-placement="bottom">
+                Total: {{ stats['all_analyses'] }} / {{ config['ANALYSIS_PER_USER'] }}</span>
+            <span class="profile-stats bootstro"
+                data-bootstro-title="Number of total studies"
+                data-bootstro-content="{{ config['APP_NAME'] }} currently supports {{ config['ACTIVE_ANALYSIS_PER_USER'] }}
+                                       active analyses at any given moment per user to optimise server load."
+                data-bootstro-step = "5"
+                data-bootstro-placement="bottom">
+                Active: {{ stats['active_analyses'] }} / {{ config['ACTIVE_ANALYSIS_PER_USER'] }}</span>
+        </h2>
+        {% if analyses|length > 0 %}
+            <table class="table table-striped bootstro"
+                data-bootstro-title="Analyses section"
+                data-bootstro-content="This section lists your completed and submitted analyses. You can start multiple analyses
+                                       for a single study but only once the previous has finished.
+
+                                       <br><br><b>Status</b>: indicates the status of your analysis. If it's still running it's an hour-glass.
+                                                              Once it's completed it is a check mark.
+                                       <br><b>Params</b>: roll your mouse over this button to see the parameters of your analysis.
+                                       <br><b>Explore</b>: displays the heatmap of correlation matrix of the selected featres.
+                                       <br><b>Results</b>: offers a zipped folder with all results for download.
+                                       <br><b>Delete</b>: deletes analysis of the given study."
+                data-bootstro-step = "4"
+                data-bootstro-placement="bottom">
+            <thead >
+                <tr>
+                    <th class="col-md-6">Name</th>
+                    <th class="col-md-2 text-center">Status</th>
+                    <th class="col-md-2 text-center">Params</th>
+                    <th class="col-md-2 text-center">Explore</th>
+                    <th class="col-md-2 text-center">Results</th>
+                    <th class="col-md-2 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for analysis in analyses %}
+                <tr>
+                    <!-- ---------------- ANALYSIS NAME ------------------- -->
+                    <td>{{ analysis.analysis_name }}</td>
+                    <!-- --------------------- STATUS --------------------- -->
+                    <td class="text-center">
+                        {% if analysis.status == 1 %}
+                            <i class="fa fa-hourglass-half profile-icon"></i>
+                        {% else %}
+                            <i class="fa fa-check profile-icon"></i>
+                        {% endif %}
+                    </td>
+                    <!-- -------------------- PARAMS ---------------------- -->
+                    <td class="text-center">
+                        {{ render_files_and_params(analysis.params, "fa fa-gear", "Parameters of analysis") }}
+                    </td>
+                    <!-- --------------------- EXPLORE --------------------- -->
+                    <td>
+                        {% if analysis.status == 1%}
+                            <a href="#" class="btn btn-success btn-block" disabled="true">
+                        {% else %}
+                            <a href="{{ url_for('vis', user_id=user_id, analysis_id=analysis.id, data_file=analysis.data_file) }}" class="btn btn-success btn-block">
+                        {% endif %}
+                            <i class="fa fa-eye" style="padding-left: .5em"></i>
+                        </a>
+                    </td>
+                    <!-- -------------------- RESULTS --------------------- -->
+                    <td>
+                        {% if analysis.status == 1%}
+                            <a href="#" class="btn btn-success btn-block" disabled="true">
+                        {% else %}
+                            <a href="{{ url_for('get_file', user_id=user_id, study_id=analysis.id, analysis=1, file=analysis.results) }}" class="btn btn-success btn-block">
+                        {% endif %}
+                            <i class="fa fa-download" style="padding-left: .5em"></i>
+                        </a>
+                    </td>
+
+                    <!-- -------------------- DELETE ---------------------- -->
+                    <td>
+                        <form action="{{ url_for('delete_analysis', user_id=current_user.id, analysis_id=analysis.id) }}" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button type="submit" onclick="if (!confirm('Are you sure?')) return false;" class="btn btn-danger btn-block">
+                                <i class="fa fa-trash" style="padding-left: .5em"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+        {% else %}
+        <div style="margin-top: 3em" class="bootstro"
+                data-bootstro-title="Analyses section"
+                data-bootstro-content="This section lists your completed and submitted analyses. You can start multiple analyses
+                                       for a single study but only once the previous has finished. Once you submit your first analysis
+                                       the following buttons will appear as in the studies section:
+
+                                       <br><br><b>Status</b>: indicates the status of your analysis. If it's still running it's an hour-glass.
+                                                              Once it's completed it is a check mark.
+                                       <br><b>Params</b>: roll your mouse over this button to see the parameters of your analysis.
+                                       <br><b>Explore</b>: automatically generates interactive network visualisations from the results of
+                                                           your analysis. This will allow you to explore the complex correlation structures
+                                                           within your dataset(s).
+                                       <br><b>Results</b>: offers a zipped folder with all results for download.
+                                       <br><b>Delete</b>: deletes analysis of the given study."
+                data-bootstro-step = "4"
+                data-bootstro-placement="bottom">
+            <h4>You don't have any analyses yet.</h4>
+            {% if studies|length > 0 %}
+            By clicking on the green analyse button next to your dataset, you can start your first analysis.
+            {% else %}
+            First you need to upload a dataset, see the link above.
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+
+
+    <!-- -------------------------- PROFILE ------------------------------- -->
+    <div class="col-lg-3 text-center">
+        <h2 class="page-header text-left">Account
+            <a id="help" href="#" ><span class="fa fa-question" aria-hidden="true" style="float: right; padding-top: 9px; padding-right: 6px; font-size: .7em;"></span></a>
+        </h2>
+
+        <img src="{{ current_user.gravatar }}?s=200&d=mm" alt="" class="img-circle img-responsive mg-btm center-block" style="margin-top: 2em">
+
+        <h3>Hi {{ current_user.cn }}</h3>
+
+        <table class="table text-justify">
+            <tbody>
+              <tr>
+                <td class="col-md-5"><strong>Email</strong></td>
+                <td>{{ current_user.email }}</td>
+              </tr>
+              <tr>
+                <td class="col-md-5"><strong>Organisation</strong></td>
+                <td>{{ current_user.uni}}</td>
+              </tr>
+              <tr>
+                <td class="col-md-5"><strong>Country</strong></td>
+                <td>{{ current_user.country}}</td>
+              </tr>
+            </tbody>
+          </table>
+        <a class="btn btn-default btn-block" style="margin-top: 5px" href="{{ url_for_security('change_password') }}">Change password</a>
+        <a class="btn btn-default btn-block" style="margin-top: 5px" href="{{ url_for_security('logout') }}">Logout</a>
+
+        {% if current_user.has_role('superuser') %}
+        <a class="btn btn-default btn-block" style="margin-top: 5px" href="{{ url_for('admin.index') }}">Admin</a>
+        {% endif %}
+
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/bootstro.js') }}"></script>
+<script type="text/javascript">
+    // pop-overs for showing files and params
+    $("[data-toggle='popover']").popover();
+
+    // tour of the profile page
+    function help(){
+        bootstro.start('.bootstro', {
+            onComplete: function (params) {
+                alert("You have reached the end of the tour. Press 'Ok I got it' button or the Esc key to exit.");
+            }
+        })
+    };
+    {% if profile_intro %}
+        $(document).ready(help);
+    {% endif %}
+    $('#help').click(help);
+</script>
+{% endblock %}

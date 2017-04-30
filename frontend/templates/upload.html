@@ -1,0 +1,168 @@
+{% from '_macros.html' import render_question_mark, render_field_error %}
+{% extends 'base.html' %}
+{% set active_page = "upload" %}
+{% set max_file_size = 'Maximum file size: ' + config['MAX_FILE_SIZE'] + '.' %}
+{% set max_data_dims = 'Maximum rows / columns: ' + config['MAX_SAMPLES']|string + ' / ' + config['MAX_FEATURES']|string + '.'%}
+
+{% set tooltips = {
+   "study_name": ("Name of the study","Please name your study, so when you hopefully return later to upload and analyse another dataset,
+                   you can work on either of your previously uploaded studies, by simply choosing them in your profile. <br><br>
+                   It has to be at least 3 character long and cannot be longer than 25 characters."),
+   "dataset1": ("Dataset file 1","This must be a .csv or tab delimited .txt file, with columns representing features
+                 and rows corresponding to samples.<br><br>The sample identifiers should be unique, and stored in the first column.
+                 <br><br>If unsure about the exact formatting please check the example dataset in the Help menu.<br><br>" + max_data_dims +
+                 "<br>" + max_file_size),
+   "dataset1_type": ("Type of dataset 1","Describe the type of data in this dataset.<br><br>It has to be at least 3 character
+                       long and cannot be longer than 25 characters"),
+   "autocorr": ("More than one dataset","Although "+ config['APP_NAME']+" can work with a single dataset, it was primarily designed to
+                 integrate two datasets. <br><br>If you have at least " + config['INTERSECTING_SAMPLES']|string + "
+                 common samples in both data matrices, then tick this box to upload your second dataset."),
+   "dataset2": ("Dataset file 2","This must be a .csv or tab delimited .txt file, with columns representing features
+                 and rows corresponding to samples. <br><br>The sample identifiers should be unique, and stored in the first column.
+                 Understandably, only those samples will be used in the analysis, which are present in both 'Dataset file
+                 1' and 'Dataset file 2'. <br><br>If unsure about the exact formatting please check the example dataset in the
+                 Help menu.<br><br>" + max_data_dims +"<br>" + max_file_size),
+   "dataset2_type": ("Type of dataset 2","Describe the type of data in this dataset. Has to be different
+                   from dataset 1's name.<br><br>It has to be at least 3 characters long  and cannot be longer than 25 characters")
+} -%}
+
+{% block layout %}
+{% if too_many_studies == 1 %}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="alert alert-info" role="alert">
+            <h1>Exceeded the number of maximum studies</h1>
+            We are sorry, but you exceeded the maximum number of uploadable studies. <br><br>
+            Currently we can only store {{ config['ACTIVE_STUDY_PER_USER'] }} studies per user at any moment.<br><br>
+            Please delete one of your existing one to upload a new one, but be aware that
+            you can only upload {{ config['STUDY_PER_USER'] }} studies all together. <br><br>
+            Thank you for your understanding,<br>
+            {{ config['APP_NAME'] }} team
+        </div>
+    </div>
+</div>
+{% elif too_many_studies == 2 %}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="alert alert-danger" role="alert">
+            <h1>Exceeded the total number of uploadable studies</h1>
+            We are sorry, but currently we can only support {{ config['STUDY_PER_USER'] }} studies per user. <br><br>
+            If you would need to analyse more, please write us using the contact menu.
+            <br><br>
+            Thank you for your understanding,<br>
+            {{ config['APP_NAME'] }} team
+        </div>
+    </div>
+</div>
+{% else %}
+<form id="upload-form" method="POST" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <div class="row ">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="page-header">
+                <h1>Upload your study</h1>
+            </div>
+            <!-- ------------------ MISFORMATTED FILES -------------------- -->
+            <div class="alert alert-danger" role="alert" id="error_misformatted">
+                <h1>MISFORMATTED FILES</h1>
+                We are sorry, but we were unable to save your study as some of your files were misformatted. <br><br>
+                Please ensure that your files follow the formatting of the files used in the example in the Help section.<br><br>
+                Please refresh this page to try again.
+                <span id="error"></span>
+            </div>
+            <!-- -------------------- NAME OF THE STUDY ------------------- -->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ form.study_name.label }}
+                    {{ render_question_mark(tooltips["study_name"]) }}
+                </div>
+                <div class="panel-body">
+                    {{ form.study_name(class_="form-control", maxlength="25") }}
+                    {{ render_field_error(form.study_name) }}
+                </div>
+            </div>
+            <!-- ----------------------- DATASET 1 ------------------------ -->
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Dataset 1</b></div>
+                <div class="panel-body">
+                    <div class="row ">
+                         <div class="col-lg-6">
+                            {{ form.dataset1.label }}
+                            {{ render_question_mark(tooltips["dataset1"]) }}
+                            {{ form.dataset1(accept=".csv,text/plain") }}
+                            {{ render_field_error(form.dataset1, 'medium_bottom') }}
+                        </div>
+                        <div class="col-lg-12">
+                            <br>
+                            {{ form.dataset1_type.label }}
+                            {{ render_question_mark(tooltips["dataset1_type"]) }}
+                            {{ form.dataset1_type(class_="form-control", maxlength="25") }}
+                            {{ render_field_error(form.dataset1_type) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ----------------------- DATASET 2 ------------------------ -->
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Dataset 2</b></div>
+                <div class="panel-body">
+                    {{ form.autocorr() }} <b>More than one dataset</b>
+                    {{ render_question_mark(tooltips["autocorr"]) }}
+                    <div class="row" id="dataset_panel2">
+                        <br>
+                        <div class="col-lg-6">
+                            {{ form.dataset2.label }}
+                            {{ render_question_mark(tooltips["dataset2"]) }}
+                            {{ form.dataset2(accept=".csv,text/plain") }}
+                            {{ render_field_error(form.dataset2, 'small_top') }}
+                        </div>
+                        <div class="col-lg-12">
+                            <br>
+                            {{ form.dataset2_type.label }}
+                            {{ render_question_mark(tooltips["dataset2_type"]) }}
+                            {{ form.dataset2_type(class_="form-control", maxlength="25") }}
+                            {{ render_field_error(form.dataset2_type) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------------ READ T&C ------------------------- -->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ form.tc.label }}
+
+                </div>
+                <div class="panel-body">
+                    {{ form.tc() }} <b>I read and understood the <a href="{{ url_for('tc') }}">
+                    terms and conditions</a>. </b>
+                    {{ render_field_error(form.tc) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="progress" id="progress" style="display: none">
+                <div class="progress-bar progress-bar-info progress-bar-striped"
+                     id="progress-bar" role="progressbar" aria-valuenow="0"
+                     aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                0%
+                </div>
+            </div>
+
+            <button type="button" id="upload-button" class="btn btn-info btn-block">
+                <h4><strong><span id="upload-button-text">UPLOAD</span></strong></h4>
+            </button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var csrftoken = "{{ csrf_token() }}";
+    var UPLOAD_URL = "{{ url_for('upload') }}";
+    var PROFILE_URL = "{{ url_for('profile') }}";
+    var ERROR_URL = "{{ url_for('something_wrong', page='upload') }}";
+    var TOO_LARGE_URL = "{{ url_for('too_large_file') }}";
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endif %}
+{% endblock %}
