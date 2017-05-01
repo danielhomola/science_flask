@@ -29,6 +29,18 @@ that you can understand code examples and start hacking away. But it
 takes a __long__ time to actually get a working website with all the
 features listed above.
 
+Here's the simple idea behind Science Flask:
+
+<p align="center">
+  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_flowchart.png?raw=true" alt="Science Flask"/>
+</p>
+
+Notice how everything in blue is non-specific to any scientific app. So
+then why are we keep re-developing it? Ideally, scientists need not
+to work on anything else than the green bit. Then they can plug
+that into Science Flask with a few hours of work and have their
+tool online in a day or two, instead of weeks.
+
 I hope that by open-sourcing Science Flask, the activation energy for
 turning an offline science project or research tool into a functioning
 web-app will be lowered significantly. Hopefully this will not only mean
@@ -240,10 +252,6 @@ could be changed easily.
 changed to any mail server.
 
 ## Overall structure of Science Flask 
-
-<p align="center">
-  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_flowchart.png?raw=true" alt="Science Flask"/>
-</p>
 
 ### frontend
 
