@@ -244,6 +244,7 @@ changed to any mail server.
 <p align="center">
   <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_flowchart.png?raw=true" alt="Science Flask"/>
 </p>
+
 ### frontend
 
 Frontend holds all the website components (HTML, CSS, JS) and Flask app that
