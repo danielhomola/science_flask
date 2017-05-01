@@ -4,7 +4,7 @@
 
 {% block layout %}
     <div class="row">
-        <div class="jumbotron col-md-8 col-md-offset-2" style="text-align: justify;">
+        <div class="jumbotron col-md-12" style="text-align: justify;">
             <p>
             {{ config['APP_NAME'] }} is a web-app template for online
             scientific research tools built with Python Flask, JavaScript and Bootstrap CSS.
@@ -42,10 +42,13 @@
                 </li>
             </ol>
         </div>
-        <div class="jumbotron col-md-8 col-md-offset-2" style="text-align: justify;">
+
+        <img style="width: 100%; height: auto; padding-bottom: 30px;" src="{{ url_for('static', filename='img/sf_flowchart.png') }}" alt="{{ config['APP_NAME'] }}" title="{{ config['APP_NAME'] }}">
+
+        <div class="jumbotron col-md-12" style="text-align: justify;">
             <p>
             Here's the simple idea behind Science Flask:
-            <img style="max-width:150px;" src="{{ url_for('static', filename='img/sf_flowchart.png') }}" alt="{{ config['APP_NAME'] }}" title="{{ config['APP_NAME'] }}">
+
             <br>
             Notice how everything in blue is non-specific to any scientific app. So
             then why are we keep re-developing it? Ideally, scientists need not
