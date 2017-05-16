@@ -13,4 +13,5 @@ logs/
 dev/
 failedAnalyses/
 article/
+website/
 frontend/config.py
