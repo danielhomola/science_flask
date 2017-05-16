@@ -90,7 +90,7 @@ Bootstrap makes writing good looking HTML pages dead easy.
 interactive tours (available on all the above listed pages) and tooltips.
 - __Python3__: The whole project is written in Python3.5 (because it's 2017).
 
-## Example app - [available here](https://ec2-52-215-3-198.eu-west-1.compute.amazonaws.com/)
+## Example app - [available here](https://scienceflask.com)
 
 In it's current form Science Flask implements a really simple scientific app.
  1. Users can register with an academic email address. 
