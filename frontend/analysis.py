@@ -13,7 +13,7 @@ from frontend import app, db, models, create_celery_app, mail
 celery = create_celery_app()
 # have to set ADMIN config param here, because it would clash with Flask-Mail's
 # you need to change this to your admin email address.
-celery.conf.ADMINS = [('ScienceFlask', 'corrmapper@corrmapper.com')]
+celery.conf.ADMINS = [('ScienceFlask', 'admin@scienceflask.com')]
 
 @celery.task(throws=(Terminated,), name='frontend.analysis.run_analysis')
 def run_analysis(current_user_id):
