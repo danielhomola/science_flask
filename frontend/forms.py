@@ -188,7 +188,13 @@ class AcademicEmailAddress(object):
             load_uni_address_data()
 
     def __call__(self, form, field):
-        if field.data.split("@")[1] not in uni_data:
+        user_uni_domain = field.data.split("@")[1]
+        user_uni_domain_ok = False
+        for k, v in uni_data.items():
+            if user_uni_domain.endswith(k):
+                user_uni_domain_ok = True
+                break
+        if not user_uni_domain_ok:
             raise ValidationError(self.message)
 
 email_validators = [InputRequired(),

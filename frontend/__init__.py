@@ -75,8 +75,13 @@ def user_confirmed_sighandler(app, user):
     user_datastore.add_role_to_user(user, default_role)
     if not uni_loaded:
         load_uni_address_data()
-    user.country = uni_data[user.email.split("@")[1]][0]
-    user.uni = uni_data[user.email.split("@")[1]][1]
+
+    user_uni_domain = user.email.split("@")[1]
+    for k, v in uni_data.items():
+        if user_uni_domain.endswith(k):
+            user.country = uni_data[k][0]
+            user.uni = uni_data[k][1]
+            break
     return
 
 # -----------------------------------------------------------------------------

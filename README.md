@@ -52,9 +52,13 @@ nicer and will be easier to use.
 So why shouldn't you just start hacking away, following Flask tutorials?
 What exactly can Science Flask give you?
 
-- __User management:__ User's are only allowed to register with a
+- __Academic registration process:__ User's are only allowed to register with a
 valid academic email address. This is to ensure that your tool is mainly
-used for academic and research purposes and not for commercial uses.
+used for academic and research purposes and not for commercial uses. If your
+institution or department uses a mail server which alters the end of your mail
+address from the cannonical one (e.g. mail.imperial.ac.uk instead of 
+imperial.ac.uk), you'll still be recognised. 
+- __Standard user management:__
 Furthermore it comes with all the rest of it: email addresses are
 confirmed, users can change passwords, get password reset request if they
 forgot it, etc. Thanks Flask-Security, you can also assign roles to different 
