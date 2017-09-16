@@ -155,17 +155,17 @@ class UploadForm(FlaskForm):
 
 def load_uni_address_data():
     global uni_data, uni_loaded
-    json_address = ("https://raw.githubusercontent.com/Hipo/university-"
-                    "domains-list/master/world_universities_and_domains.json")
-
-    response = requests.get(json_address)
-
-    # if we cannot find it only use the offline version
-    if response.status_code == 200:
-        uni_json = response.json()
-    else:
-        json_url = join(appdir, "static/uni", "uni.json")
-        uni_json = json.load(open(json_url))
+    # instead of loading it from online we'll use the offline version because
+    # it's easier to add exceptions to it, and they changed its format
+    # json_address = ("https://raw.githubusercontent.com/Hipo/university-"
+    #                 "domains-list/master/world_universities_and_domains.json")
+    # response = requests.get(json_address)
+    # if response.status_code == 200:
+    #     uni_json = response.json()
+    # # if we cannot find it only use the offline version
+    # else:
+    json_url = join(appdir , "static/uni", "uni.json")
+    uni_json = json.load(open(json_url))
 
     for uni in uni_json:
         uni_data[uni["domain"].lower()].append(uni["country"])
