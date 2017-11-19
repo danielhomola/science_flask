@@ -1,0 +1,812 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>frontend package &#8212; ScienceFlask 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="frontend-package">
+<h1>frontend package<a class="headerlink" href="#frontend-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-frontend.analysis">
+<span id="frontend-analysis-module"></span><h2>frontend.analysis module<a class="headerlink" href="#module-frontend.analysis" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="frontend.analysis.delete_analysis">
+<code class="descclassname">frontend.analysis.</code><code class="descname">delete_analysis</code><span class="sig-paren">(</span><em>analysis_id</em>, <em>analysis_folder</em>, <em>failed_folder</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.analysis.delete_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.analysis.send_fail_mail">
+<code class="descclassname">frontend.analysis.</code><code class="descname">send_fail_mail</code><span class="sig-paren">(</span><em>email</em>, <em>first_name</em>, <em>analysis_name</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.analysis.send_fail_mail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.analysis.send_mail">
+<code class="descclassname">frontend.analysis.</code><code class="descname">send_mail</code><span class="sig-paren">(</span><em>email</em>, <em>first_name</em>, <em>analysis_name</em>, <em>subject=None</em>, <em>message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.analysis.send_mail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.analysis.terminate_analysis">
+<code class="descclassname">frontend.analysis.</code><code class="descname">terminate_analysis</code><span class="sig-paren">(</span><em>task_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.analysis.terminate_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kills running analysis if the users deletes it from profile</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.analysis.zip_study">
+<code class="descclassname">frontend.analysis.</code><code class="descname">zip_study</code><span class="sig-paren">(</span><em>analysis_name</em>, <em>analysis_folder</em>, <em>output_folder</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.analysis.zip_study" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a .zip file from the output folder and deletes the output_folder</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-frontend.config">
+<span id="frontend-config-module"></span><h2>frontend.config module<a class="headerlink" href="#module-frontend.config" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-frontend.config_example">
+<span id="frontend-config-example-module"></span><h2>frontend.config_example module<a class="headerlink" href="#module-frontend.config_example" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-frontend.forms">
+<span id="frontend-forms-module"></span><h2>frontend.forms module<a class="headerlink" href="#module-frontend.forms" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="frontend.forms.AcademicEmailAddress">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">AcademicEmailAddress</code><span class="sig-paren">(</span><em>message=&quot;This doesn't seem like a valid academic email address. If we've made a mistake</em>, <em>please contact us.&quot;</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.AcademicEmailAddress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.AnalysisForm">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">AnalysisForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.AnalysisForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="frontend.forms.AnalysisForm.alpha_val">
+<code class="descname">alpha_val</code><em class="property"> = &lt;UnboundField(DecimalField, ('&amp;alpha; for the multiple correction method', [&lt;wtforms.validators.NumberRange object&gt;]), {'default': 0.05})&gt;</em><a class="headerlink" href="#frontend.forms.AnalysisForm.alpha_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.AnalysisForm.analysis_name">
+<code class="descname">analysis_name</code><em class="property"> = &lt;UnboundField(StringField, ('Name of the analysis', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;, &lt;frontend.forms.UniqueAnalysisName object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.AnalysisForm.analysis_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.AnalysisForm.check">
+<code class="descname">check</code><em class="property"> = &lt;UnboundField(BooleanField, ('',), {})&gt;</em><a class="headerlink" href="#frontend.forms.AnalysisForm.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.AnalysisForm.feat_num">
+<code class="descname">feat_num</code><em class="property"> = &lt;UnboundField(IntegerField, ('Number of top variance feattures', [&lt;wtforms.validators.NumberRange object&gt;]), {'default': 5})&gt;</em><a class="headerlink" href="#frontend.forms.AnalysisForm.feat_num" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.AnalysisForm.multi_corr_method">
+<code class="descname">multi_corr_method</code><em class="property"> = &lt;UnboundField(SelectField, ('Method for correction',), {'coerce': &lt;class 'str'&gt;, 'default': 'fdr_bh', 'choices': [('fdr_bh', 'Benjamini-Hochberg'), ('bonferroni', 'Bonferroni')]})&gt;</em><a class="headerlink" href="#frontend.forms.AnalysisForm.multi_corr_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.BooleanRequired">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">BooleanRequired</code><span class="sig-paren">(</span><em>message='This box needs to be checked.'</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.BooleanRequired" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.ExtendedRegisterForm">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">ExtendedRegisterForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.ExtendedRegisterForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_security.forms.RegisterForm</span></code></p>
+<dl class="attribute">
+<dt id="frontend.forms.ExtendedRegisterForm.email">
+<code class="descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email address', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Email object&gt;, &lt;frontend.forms.AcademicEmailAddress object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.ExtendedRegisterForm.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.ExtendedRegisterForm.first_name">
+<code class="descname">first_name</code><em class="property"> = &lt;UnboundField(StringField, ('First Name', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.ExtendedRegisterForm.first_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.ExtendedRegisterForm.last_name">
+<code class="descname">last_name</code><em class="property"> = &lt;UnboundField(StringField, ('Last Name', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.ExtendedRegisterForm.last_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.ExtensionCheck">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">ExtensionCheck</code><span class="sig-paren">(</span><em>exts</em>, <em>required=None</em>, <em>message=None</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.ExtensionCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.RequiredIf">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">RequiredIf</code><span class="sig-paren">(</span><em>other_field_names</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.RequiredIf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">wtforms.validators.DataRequired</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.UniqueAnalysisName">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">UniqueAnalysisName</code><span class="sig-paren">(</span><em>message='You already have an analysis with this name for this dataset.'</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.UniqueAnalysisName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.UniqueDatasetName">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">UniqueDatasetName</code><span class="sig-paren">(</span><em>message='You already have a dataset with this name.'</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.UniqueDatasetName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.forms.UploadForm">
+<em class="property">class </em><code class="descclassname">frontend.forms.</code><code class="descname">UploadForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.UploadForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.autocorr">
+<code class="descname">autocorr</code><em class="property"> = &lt;UnboundField(BooleanField, ('More than one dataset',), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.autocorr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.check">
+<code class="descname">check</code><em class="property"> = &lt;UnboundField(BooleanField, ('',), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.dataset1">
+<code class="descname">dataset1</code><em class="property"> = &lt;UnboundField(FileField, ('Dataset file 1', [&lt;wtforms.validators.DataRequired object&gt;, &lt;frontend.forms.ExtensionCheck object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.dataset1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.dataset1_type">
+<code class="descname">dataset1_type</code><em class="property"> = &lt;UnboundField(StringField, ('Type of dataset 1', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.dataset1_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.dataset2">
+<code class="descname">dataset2</code><em class="property"> = &lt;UnboundField(FileField, ('Dataset file 2', [&lt;frontend.forms.RequiredIf object&gt;, &lt;frontend.forms.ExtensionCheck object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.dataset2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.dataset2_type">
+<code class="descname">dataset2_type</code><em class="property"> = &lt;UnboundField(StringField, ('Type of dataset 2', [&lt;frontend.forms.RequiredIf object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.dataset2_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.file_sel">
+<code class="descname">file_sel</code><em class="property"> = 'Please select a file.'</em><a class="headerlink" href="#frontend.forms.UploadForm.file_sel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.study_name">
+<code class="descname">study_name</code><em class="property"> = &lt;UnboundField(StringField, ('Name of the study', [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;, &lt;frontend.forms.UniqueDatasetName object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.study_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.forms.UploadForm.tc">
+<code class="descname">tc</code><em class="property"> = &lt;UnboundField(BooleanField, ('Terms and conditions', [&lt;frontend.forms.BooleanRequired object&gt;]), {})&gt;</em><a class="headerlink" href="#frontend.forms.UploadForm.tc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="frontend.forms.UploadForm.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.UploadForm.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.forms.load_uni_address_data">
+<code class="descclassname">frontend.forms.</code><code class="descname">load_uni_address_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.forms.load_uni_address_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-frontend.models">
+<span id="frontend-models-module"></span><h2>frontend.models module<a class="headerlink" href="#module-frontend.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="frontend.models.Analyses">
+<em class="property">class </em><code class="descclassname">frontend.models.</code><code class="descname">Analyses</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.models.Analyses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></code></p>
+<dl class="attribute">
+<dt id="frontend.models.Analyses.alpha_val">
+<code class="descname">alpha_val</code><a class="headerlink" href="#frontend.models.Analyses.alpha_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.analysis_name">
+<code class="descname">analysis_name</code><a class="headerlink" href="#frontend.models.Analyses.analysis_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.author">
+<code class="descname">author</code><a class="headerlink" href="#frontend.models.Analyses.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.feat_num">
+<code class="descname">feat_num</code><a class="headerlink" href="#frontend.models.Analyses.feat_num" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.id">
+<code class="descname">id</code><a class="headerlink" href="#frontend.models.Analyses.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.multi_corr_method">
+<code class="descname">multi_corr_method</code><a class="headerlink" href="#frontend.models.Analyses.multi_corr_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.status">
+<code class="descname">status</code><a class="headerlink" href="#frontend.models.Analyses.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.study">
+<code class="descname">study</code><a class="headerlink" href="#frontend.models.Analyses.study" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.study_id">
+<code class="descname">study_id</code><a class="headerlink" href="#frontend.models.Analyses.study_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.timestamp_finish">
+<code class="descname">timestamp_finish</code><a class="headerlink" href="#frontend.models.Analyses.timestamp_finish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.timestamp_start">
+<code class="descname">timestamp_start</code><a class="headerlink" href="#frontend.models.Analyses.timestamp_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Analyses.user_id">
+<code class="descname">user_id</code><a class="headerlink" href="#frontend.models.Analyses.user_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.models.Role">
+<em class="property">class </em><code class="descclassname">frontend.models.</code><code class="descname">Role</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.models.Role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></code>, <code class="xref py py-class docutils literal"><span class="pre">flask_security.core.RoleMixin</span></code></p>
+<dl class="attribute">
+<dt id="frontend.models.Role.description">
+<code class="descname">description</code><a class="headerlink" href="#frontend.models.Role.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Role.id">
+<code class="descname">id</code><a class="headerlink" href="#frontend.models.Role.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Role.name">
+<code class="descname">name</code><a class="headerlink" href="#frontend.models.Role.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Role.users">
+<code class="descname">users</code><a class="headerlink" href="#frontend.models.Role.users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.models.Studies">
+<em class="property">class </em><code class="descclassname">frontend.models.</code><code class="descname">Studies</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.models.Studies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></code></p>
+<dl class="attribute">
+<dt id="frontend.models.Studies.analyses">
+<code class="descname">analyses</code><a class="headerlink" href="#frontend.models.Studies.analyses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.author">
+<code class="descname">author</code><a class="headerlink" href="#frontend.models.Studies.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.autocorr">
+<code class="descname">autocorr</code><a class="headerlink" href="#frontend.models.Studies.autocorr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.dataset1">
+<code class="descname">dataset1</code><a class="headerlink" href="#frontend.models.Studies.dataset1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.dataset1_type">
+<code class="descname">dataset1_type</code><a class="headerlink" href="#frontend.models.Studies.dataset1_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.dataset2">
+<code class="descname">dataset2</code><a class="headerlink" href="#frontend.models.Studies.dataset2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.dataset2_type">
+<code class="descname">dataset2_type</code><a class="headerlink" href="#frontend.models.Studies.dataset2_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.id">
+<code class="descname">id</code><a class="headerlink" href="#frontend.models.Studies.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.study_name">
+<code class="descname">study_name</code><a class="headerlink" href="#frontend.models.Studies.study_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#frontend.models.Studies.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.Studies.user_id">
+<code class="descname">user_id</code><a class="headerlink" href="#frontend.models.Studies.user_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="frontend.models.User">
+<em class="property">class </em><code class="descclassname">frontend.models.</code><code class="descname">User</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></code>, <code class="xref py py-class docutils literal"><span class="pre">flask_security.core.UserMixin</span></code></p>
+<dl class="attribute">
+<dt id="frontend.models.User.active">
+<code class="descname">active</code><a class="headerlink" href="#frontend.models.User.active" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.analyses">
+<code class="descname">analyses</code><a class="headerlink" href="#frontend.models.User.analyses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.cn">
+<code class="descname">cn</code><a class="headerlink" href="#frontend.models.User.cn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.confirmed_at">
+<code class="descname">confirmed_at</code><a class="headerlink" href="#frontend.models.User.confirmed_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.country">
+<code class="descname">country</code><a class="headerlink" href="#frontend.models.User.country" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.created">
+<code class="descname">created</code><a class="headerlink" href="#frontend.models.User.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.current_login_at">
+<code class="descname">current_login_at</code><a class="headerlink" href="#frontend.models.User.current_login_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.current_login_ip">
+<code class="descname">current_login_ip</code><a class="headerlink" href="#frontend.models.User.current_login_ip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.email">
+<code class="descname">email</code><a class="headerlink" href="#frontend.models.User.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.first_name">
+<code class="descname">first_name</code><a class="headerlink" href="#frontend.models.User.first_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.gravatar">
+<code class="descname">gravatar</code><a class="headerlink" href="#frontend.models.User.gravatar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.id">
+<code class="descname">id</code><a class="headerlink" href="#frontend.models.User.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.last_login_at">
+<code class="descname">last_login_at</code><a class="headerlink" href="#frontend.models.User.last_login_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.last_login_ip">
+<code class="descname">last_login_ip</code><a class="headerlink" href="#frontend.models.User.last_login_ip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.last_name">
+<code class="descname">last_name</code><a class="headerlink" href="#frontend.models.User.last_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.login_count">
+<code class="descname">login_count</code><a class="headerlink" href="#frontend.models.User.login_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.num_analyses">
+<code class="descname">num_analyses</code><a class="headerlink" href="#frontend.models.User.num_analyses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.num_studies">
+<code class="descname">num_studies</code><a class="headerlink" href="#frontend.models.User.num_studies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.password">
+<code class="descname">password</code><a class="headerlink" href="#frontend.models.User.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.profile_intro">
+<code class="descname">profile_intro</code><a class="headerlink" href="#frontend.models.User.profile_intro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.roles">
+<code class="descname">roles</code><a class="headerlink" href="#frontend.models.User.roles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.studies">
+<code class="descname">studies</code><a class="headerlink" href="#frontend.models.User.studies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="frontend.models.User.uni">
+<code class="descname">uni</code><a class="headerlink" href="#frontend.models.User.uni" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.models.load_user">
+<code class="descclassname">frontend.models.</code><code class="descname">load_user</code><span class="sig-paren">(</span><em>user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.models.load_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-frontend.view_functions">
+<span id="frontend-view-functions-module"></span><h2>frontend.view_functions module<a class="headerlink" href="#module-frontend.view_functions" title="Permalink to this headline">¶</a></h2>
+<p>These are essential helper functions for the upload, analysis and profile views.</p>
+<dl class="function">
+<dt id="frontend.view_functions.get_analyses_array">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">get_analyses_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.get_analyses_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of object, so we can display in a popover the parameters
+of each analysis on the profile page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.get_form">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">get_form</code><span class="sig-paren">(</span><em>form</em>, <em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.get_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges files and form values of request, because flask separates them.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.get_studies_array">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">get_studies_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.get_studies_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of object, so we can display in a popover the files of
+each study on the profile page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.get_study_folder">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">get_study_folder</code><span class="sig-paren">(</span><em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.get_study_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a path to the current user’s study</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.get_user_folder">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">get_user_folder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.get_user_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the folder of the current user, based on the config params.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.save_analysis">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">save_analysis</code><span class="sig-paren">(</span><em>form</em>, <em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.save_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates analysis folder, calls save_analysis_to_db and write_params_file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.save_analysis_to_db">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">save_analysis_to_db</code><span class="sig-paren">(</span><em>form</em>, <em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.save_analysis_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves parameters of analysis and start it on the cluster</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.save_study">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">save_study</code><span class="sig-paren">(</span><em>form</em>, <em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.save_study" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates study folder, saves uploaded files, checks their formatting</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.save_study_to_db">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">save_study_to_db</code><span class="sig-paren">(</span><em>files_dict</em>, <em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.save_study_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the paths of files and parameters to the db</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.security_check">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">security_check</code><span class="sig-paren">(</span><em>user_id</em>, <em>study_id</em>, <em>analysis=False</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.security_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a couple of views, we need to make sure that the user is accessing
+content that is his/her and not others.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.view_functions.write_params_file">
+<code class="descclassname">frontend.view_functions.</code><code class="descname">write_params_file</code><span class="sig-paren">(</span><em>folders</em>, <em>form</em>, <em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.view_functions.write_params_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the params.csv file which is essential for each analysis to run.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-frontend.views">
+<span id="frontend-views-module"></span><h2>frontend.views module<a class="headerlink" href="#module-frontend.views" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="frontend.views.about">
+<code class="descclassname">frontend.views.</code><code class="descname">about</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.about" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.all_exception_error">
+<code class="descclassname">frontend.views.</code><code class="descname">all_exception_error</code><span class="sig-paren">(</span><em>exception</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.all_exception_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.analysis">
+<code class="descclassname">frontend.views.</code><code class="descname">analysis</code><span class="sig-paren">(</span><em>user_id</em>, <em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the setup of analyses. Just as upload, it uses AJAX POST requests
+to do the server side form validation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.delete_analysis">
+<code class="descclassname">frontend.views.</code><code class="descname">delete_analysis</code><span class="sig-paren">(</span><em>user_id</em>, <em>analysis_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.delete_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.delete_study">
+<code class="descclassname">frontend.views.</code><code class="descname">delete_study</code><span class="sig-paren">(</span><em>user_id</em>, <em>study_id</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.delete_study" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.forbidden_error">
+<code class="descclassname">frontend.views.</code><code class="descname">forbidden_error</code><span class="sig-paren">(</span><em>error</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.forbidden_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.get_file">
+<code class="descclassname">frontend.views.</code><code class="descname">get_file</code><span class="sig-paren">(</span><em>user_id</em>, <em>study_id</em>, <em>analysis</em>, <em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.get_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>We need to serve static files (.js, .json) securely for the dashboard and
+visualisations that are not in the default location (i.e. static folder),
+because they are protected and user specific. app.instance_path was set to
+/userData with its absolute path in __init__.py.</p>
+<p>If analysis is True, study_id will be checked as analysis_id.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.help">
+<code class="descclassname">frontend.views.</code><code class="descname">help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.help" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.index">
+<code class="descclassname">frontend.views.</code><code class="descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.internal_error">
+<code class="descclassname">frontend.views.</code><code class="descname">internal_error</code><span class="sig-paren">(</span><em>error</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.internal_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.not_found_error">
+<code class="descclassname">frontend.views.</code><code class="descname">not_found_error</code><span class="sig-paren">(</span><em>error</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.not_found_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.profile">
+<code class="descclassname">frontend.views.</code><code class="descname">profile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.something_wrong">
+<code class="descclassname">frontend.views.</code><code class="descname">something_wrong</code><span class="sig-paren">(</span><em>page</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.something_wrong" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.static_from_root">
+<code class="descclassname">frontend.views.</code><code class="descname">static_from_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.static_from_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.tc">
+<code class="descclassname">frontend.views.</code><code class="descname">tc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.tc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.too_large_file">
+<code class="descclassname">frontend.views.</code><code class="descname">too_large_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.too_large_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.upload">
+<code class="descclassname">frontend.views.</code><code class="descname">upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the upload of files. Uses AJAX POST requests to do server side form
+validation, which looks like client site validation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.views.vis">
+<code class="descclassname">frontend.views.</code><code class="descname">vis</code><span class="sig-paren">(</span><em>user_id</em>, <em>analysis_id</em>, <em>data_file</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.views.vis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays network visualisation for analysis</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-frontend">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-frontend" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="frontend.MyModelView">
+<em class="property">class </em><code class="descclassname">frontend.</code><code class="descname">MyModelView</code><span class="sig-paren">(</span><em>model</em>, <em>session</em>, <em>name=None</em>, <em>category=None</em>, <em>endpoint=None</em>, <em>url=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_admin.contrib.sqla.view.ModelView</span></code></p>
+<dl class="method">
+<dt id="frontend.MyModelView.action_view">
+<code class="descname">action_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.action_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass-model action view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.ajax_lookup">
+<code class="descname">ajax_lookup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.ajax_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.ajax_update">
+<code class="descname">ajax_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.ajax_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edits a single column of a record in list view.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.create_view">
+<code class="descname">create_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.create_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create model view</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.delete_view">
+<code class="descname">delete_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.delete_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete model view. Only POST method is allowed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.details_view">
+<code class="descname">details_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.details_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Details model view</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.edit_view">
+<code class="descname">edit_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.edit_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit model view</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.export">
+<code class="descname">export</code><span class="sig-paren">(</span><em>export_type</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.export" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.index_view">
+<code class="descname">index_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.index_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>List view</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="frontend.MyModelView.is_accessible">
+<code class="descname">is_accessible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.MyModelView.is_accessible" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="frontend.create_celery_app">
+<code class="descclassname">frontend.</code><code class="descname">create_celery_app</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#frontend.create_celery_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="frontend.user_confirmed_sighandler">
+<code class="descclassname">frontend.</code><code class="descname">user_confirmed_sighandler</code><span class="sig-paren">(</span><em>app</em>, <em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#frontend.user_confirmed_sighandler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Daniel Homola.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/frontend.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
