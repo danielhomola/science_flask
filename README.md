@@ -124,6 +124,25 @@ In it's current form Science Flask implements a really simple scientific app.
 The app used to run on AWS on a t2.micro instance, but I shut it down to save the £10 each month. The  [__deployment.md__](https://github.com/danielhomola/science_flask/blob/master/deployment.md) 
 explains the necessary steps to get your app to this stage. 
 
+Nonetheless here are some screenshots from the site:
+
+<p align="center">
+  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_main.png?raw=true" alt="Science Flask main page"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_profile.png?raw=true" alt="Science Flask profile page"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_upload.png?raw=true" alt="Science Flask upload page"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/danielhomola/science_flask/blob/master/frontend/static/img/sf_admin.png?raw=true" alt="Science Flask admin page"/>
+</p>
+
+
 ## Installation
 
 Here's how to get Science Flask working in 2 minutes on Linux. It should be 
