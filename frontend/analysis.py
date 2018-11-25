@@ -15,6 +15,7 @@ celery = create_celery_app()
 # you need to change this to your admin email address.
 celery.conf.ADMINS = [('ScienceFlask', 'admin@scienceflask.com')]
 
+
 @celery.task(throws=(Terminated,), name='frontend.analysis.run_analysis')
 def run_analysis(current_user_id):
     with celery.app.app_context():

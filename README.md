@@ -94,7 +94,7 @@ Bootstrap makes writing good looking HTML pages dead easy.
 interactive tours (available on all the above listed pages) and tooltips.
 - __Python3__: The whole project is written in Python3.5 (because it's 2017).
 
-## Example app - [available here](https://scienceflask.com)
+## Example app
 
 In it's current form Science Flask implements a really simple scientific app.
  1. Users can register with an academic email address. 
@@ -121,7 +121,7 @@ In it's current form Science Flask implements a really simple scientific app.
  8. The tables and heatmap of correlations can be downloaded by the user or
  checked online.
 
-The app runs on AWS on a t2.micro instance. The  [__deployment.md__](https://github.com/danielhomola/science_flask/blob/master/deployment.md) 
+The app used to run on AWS on a t2.micro instance, but I shut it down to save the £10 each month. The  [__deployment.md__](https://github.com/danielhomola/science_flask/blob/master/deployment.md) 
 explains the necessary steps to get your app to this stage. 
 
 ## Installation
